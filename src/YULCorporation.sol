@@ -52,11 +52,7 @@ contract YULCorporation is ReentrancyGuard {
     // Events
     event CorporationIncorporated(string name, string jurisdiction, address founder);
     event CorporationInitialized(
-        address shareToken,
-        address governance,
-        address treasury,
-        address dividendDistributor,
-        address officerManager
+        address shareToken, address governance, address treasury, address dividendDistributor, address officerManager
     );
     event SharesIssued(address indexed to, uint256 amount, string reason);
     event SharesBurned(address indexed from, uint256 amount, string reason);
@@ -190,13 +186,7 @@ contract YULCorporation is ReentrancyGuard {
      *         Only governance can call.
      * @param amount Amount of ETH to distribute
      */
-    function distributeEthDividend(uint256 amount)
-        external
-        whenInitialized
-        whenActive
-        onlyGovernance
-        nonReentrant
-    {
+    function distributeEthDividend(uint256 amount) external whenInitialized whenActive onlyGovernance nonReentrant {
         if (amount == 0) revert ZeroAmount();
 
         // Transfer ETH from treasury to dividend distributor
@@ -242,12 +232,7 @@ contract YULCorporation is ReentrancyGuard {
      * @param role The officer role
      * @param officer Address of the officer
      */
-    function appointOfficer(bytes32 role, address officer)
-        external
-        whenInitialized
-        whenActive
-        onlyGovernance
-    {
+    function appointOfficer(bytes32 role, address officer) external whenInitialized whenActive onlyGovernance {
         officerManager.appointOfficer(role, officer);
     }
 
@@ -255,12 +240,7 @@ contract YULCorporation is ReentrancyGuard {
      * @notice Remove an officer. Only governance can call.
      * @param role The officer role to remove
      */
-    function removeOfficer(bytes32 role)
-        external
-        whenInitialized
-        whenActive
-        onlyGovernance
-    {
+    function removeOfficer(bytes32 role) external whenInitialized whenActive onlyGovernance {
         officerManager.removeOfficer(role);
     }
 
@@ -268,12 +248,7 @@ contract YULCorporation is ReentrancyGuard {
      * @notice Add a director. Only governance can call.
      * @param director Address of the new director
      */
-    function addDirector(address director)
-        external
-        whenInitialized
-        whenActive
-        onlyGovernance
-    {
+    function addDirector(address director) external whenInitialized whenActive onlyGovernance {
         officerManager.addDirector(director);
     }
 
@@ -281,12 +256,7 @@ contract YULCorporation is ReentrancyGuard {
      * @notice Remove a director. Only governance can call.
      * @param director Address of the director to remove
      */
-    function removeDirector(address director)
-        external
-        whenInitialized
-        whenActive
-        onlyGovernance
-    {
+    function removeDirector(address director) external whenInitialized whenActive onlyGovernance {
         officerManager.removeDirector(director);
     }
 
@@ -344,12 +314,7 @@ contract YULCorporation is ReentrancyGuard {
         )
     {
         return (
-            name,
-            jurisdiction,
-            shareToken.totalSupply(),
-            address(treasury).balance,
-            active,
-            governance.proposalCount()
+            name, jurisdiction, shareToken.totalSupply(), address(treasury).balance, active, governance.proposalCount()
         );
     }
 }

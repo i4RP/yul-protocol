@@ -43,9 +43,7 @@ contract YULDividendDistributor is ReentrancyGuard {
     mapping(uint256 => mapping(address => bool)) public hasClaimed;
 
     // Events
-    event DividendDistributed(
-        uint256 indexed roundId, address indexed token, uint256 totalAmount, uint256 totalShares
-    );
+    event DividendDistributed(uint256 indexed roundId, address indexed token, uint256 totalAmount, uint256 totalShares);
     event DividendClaimed(uint256 indexed roundId, address indexed shareholder, uint256 amount);
     event DistributorUpdated(address indexed previousDistributor, address indexed newDistributor);
 

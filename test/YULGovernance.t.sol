@@ -24,12 +24,7 @@ contract YULGovernanceTest is Test {
     function setUp() public {
         shareToken = new YULShareToken(minter);
         governance = new YULGovernance(
-            address(shareToken),
-            corporation,
-            PROPOSAL_THRESHOLD_BPS,
-            QUORUM_BPS,
-            VOTING_PERIOD,
-            VOTING_DELAY
+            address(shareToken), corporation, PROPOSAL_THRESHOLD_BPS, QUORUM_BPS, VOTING_PERIOD, VOTING_DELAY
         );
 
         // Mint shares
@@ -70,13 +65,7 @@ contract YULGovernanceTest is Test {
         calldatas[0] = "";
 
         vm.prank(proposer);
-        return governance.propose(
-            YULGovernance.ProposalType.General,
-            "Test proposal",
-            targets,
-            values,
-            calldatas
-        );
+        return governance.propose(YULGovernance.ProposalType.General, "Test proposal", targets, values, calldatas);
     }
 
     function test_propose() public {

@@ -42,14 +42,7 @@ contract YULDividendDistributorTest is Test {
         distributor.distributeEth{value: 10 ether}();
 
         assertEq(distributor.currentRoundId(), 1);
-        (
-            address token,
-            uint256 totalAmount,
-            uint256 totalShares,
-            ,
-            ,
-            bool active
-        ) = distributor.rounds(1);
+        (address token, uint256 totalAmount, uint256 totalShares,,, bool active) = distributor.rounds(1);
         assertEq(token, address(0));
         assertEq(totalAmount, 10 ether);
         assertEq(totalShares, 1000e18);

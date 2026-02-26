@@ -60,12 +60,7 @@ contract DeployYUL is Script {
 
         // 6. Deploy governance
         YULGovernance governance = new YULGovernance(
-            address(shareToken),
-            address(corporation),
-            PROPOSAL_THRESHOLD_BPS,
-            QUORUM_BPS,
-            VOTING_PERIOD,
-            VOTING_DELAY
+            address(shareToken), address(corporation), PROPOSAL_THRESHOLD_BPS, QUORUM_BPS, VOTING_PERIOD, VOTING_DELAY
         );
         console.log("YULGovernance deployed at:", address(governance));
 

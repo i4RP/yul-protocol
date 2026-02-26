@@ -41,7 +41,6 @@ contract YULGovernance is ReentrancyGuard {
         Succeeded, // Voting ended, passed
         Executed, // Proposal was executed
         Cancelled // Proposal was cancelled
-
     }
 
     /// @notice Types of proposals
@@ -51,7 +50,6 @@ contract YULGovernance is ReentrancyGuard {
         DividendDistribution, // Distribute dividends
         TreasurySpending, // Spend from treasury
         ParameterChange // Change governance parameters
-
     }
 
     /// @notice Proposal data
